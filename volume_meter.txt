@@ -1,0 +1,22 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © voidrealms
+
+//@version=5
+indicator('Volume Meter', overlay=false)
+
+var offset = 0.5
+var vlow = 5.0
+var vhigh = volume
+var vmid = 0.0
+
+
+vhigh := volume * offset > vhigh ? volume * offset : vhigh
+vmid := vhigh / (2 - offset)
+vlow := vhigh / (4 - offset)
+
+plot(vlow, "Low", color=color.new(color.red, 0))
+plot(vhigh, "High", color=color.new(color.red, 0))
+plot(vmid, "Mid", color=color.new(color.yellow, 0))
+plot(volume, "Volume", color=color.new(color.blue, 0))
+
+
